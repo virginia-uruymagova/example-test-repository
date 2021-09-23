@@ -5,14 +5,6 @@ from functions import *
 from locators.selection_process_locators import *
 from locators.inspection_page_locators import *
 
-DATA = dict(observation=str, corrective_active_note=str)
-
-@pytest.fixture
-def data_scope():
-    JSON_DATA = {"RESPONSIBLE_PARTY_LOC":"(//div[@class='ui input right icon fluid'])[1]",
-            "DUE_DATA_LOC":"//section/div[1]/div[1]/div/div[7]/div/input"}
-    return JSON_DATA
-
 
 @scenario("../features/create_inspection.feature", "Create Inspection")
 def test_create_inspection():
