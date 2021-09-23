@@ -9,7 +9,6 @@ from locators.selection_process_locators import *
 
 # ----- Test Config -----
 
-
 # Getting variables from environment variables (windows)
 
 def cred_data():
@@ -20,28 +19,9 @@ def cred_data():
         "ADMIN_PASSWORD": os.environ['FTQ_USER_admin_password'],
         "CREATE_INSPECTION": os.environ['FTQ_INSP-PAGE_create_inspection'],
         "RECENT_INSPECTIONS_LISTING": os.environ['FTQ_LISTING-GRID_recent_insp'],
-        # "NEW_CHECKLIST_SETUP": os.environ['FTQ_SETUP_checklist_new']
     }
 
     return data_dict
-
-
-# Getting variables from credentials.txt file
-
-#
-# def cred_data():
-#     data_dict = {}
-#
-#     # read from file
-#     f = open("FTQ\\credentials.txt", "r")
-#     lines = f.readlines()
-#     f.close()
-#
-#     # gathering data to one dictionary
-#     for i in lines:
-#         data_dict[i.split("#")[1].replace("\n", "")] = i.split("#")[0].replace("\n", "")
-#
-#     return data_dict
 
 
 # Chrome preferences
@@ -63,7 +43,6 @@ def chrome_options(chrome_options):
 @pytest.fixture
 def selenium(selenium):
     selenium.implicitly_wait(60)
-    # selenium.set_window_size(1800, 900)
     yield selenium
     allure.attach(selenium.get_screenshot_as_png(),
                   name='test_evidence',
@@ -159,10 +138,6 @@ def click_save_inspection(selenium):
 def inspection_id_appears(selenium):
     wait_clickable(selenium, INSP_SYNCED_TEXT)
     wait_clickable(selenium, INSP_ID)
-
-    # allure.attach(by_xpath(selenium, INSP_ID).text,
-    #               name='Inspection ID',
-    #               attachment_type=allure.attachment_type.HTML)
 
 
 @pytest.fixture
